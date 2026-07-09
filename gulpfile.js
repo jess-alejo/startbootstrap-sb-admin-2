@@ -10,7 +10,7 @@ const header = require("gulp-header");
 const merge = require("merge-stream");
 const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require("sass"));
 const uglify = require("gulp-uglify");
 
 // Load package.json for banner
@@ -49,35 +49,25 @@ function clean() {
 
 // Bring third party dependencies from node_modules into vendor directory
 function modules() {
-  // Bootstrap JS
+  // Bootstrap JS (bundle includes Popper v2)
   var bootstrapJS = gulp.src('./node_modules/bootstrap/dist/js/*')
     .pipe(gulp.dest('./vendor/bootstrap/js'));
   // Bootstrap SCSS
   var bootstrapSCSS = gulp.src('./node_modules/bootstrap/scss/**/*')
     .pipe(gulp.dest('./vendor/bootstrap/scss'));
-  // ChartJS
-  var chartJS = gulp.src('./node_modules/chart.js/dist/*.js')
+  // ChartJS (v4 UMD build)
+  var chartJS = gulp.src('./node_modules/chart.js/dist/chart.umd*.js')
     .pipe(gulp.dest('./vendor/chart.js'));
-  // dataTables
-  var dataTables = gulp.src([
-      './node_modules/datatables.net/js/*.js',
-      './node_modules/datatables.net-bs4/js/*.js',
-      './node_modules/datatables.net-bs4/css/*.css'
+  // simple-datatables (vanilla replacement for DataTables)
+  var simpleDatatables = gulp.src([
+      './node_modules/simple-datatables/dist/umd/simple-datatables.js',
+      './node_modules/simple-datatables/dist/style.css'
     ])
-    .pipe(gulp.dest('./vendor/datatables'));
+    .pipe(gulp.dest('./vendor/simple-datatables'));
   // Font Awesome
   var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
     .pipe(gulp.dest('./vendor'));
-  // jQuery Easing
-  var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
-    .pipe(gulp.dest('./vendor/jquery-easing'));
-  // jQuery
-  var jquery = gulp.src([
-      './node_modules/jquery/dist/*',
-      '!./node_modules/jquery/dist/core.js'
-    ])
-    .pipe(gulp.dest('./vendor/jquery'));
-  return merge(bootstrapJS, bootstrapSCSS, chartJS, dataTables, fontAwesome, jquery, jqueryEasing);
+  return merge(bootstrapJS, bootstrapSCSS, chartJS, simpleDatatables, fontAwesome);
 }
 
 // CSS task
