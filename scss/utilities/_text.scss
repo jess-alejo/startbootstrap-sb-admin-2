@@ -1,5 +1,11 @@
 // Grayscale Text Utilities
 
+// BS5 dropped the font-weight on small/.small that BS4 set; restore it.
+small,
+.small {
+  font-weight: $font-weight-normal;
+}
+
 .text-xs {
   font-size: .7rem;
 }

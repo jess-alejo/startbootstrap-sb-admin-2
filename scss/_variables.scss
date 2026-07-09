@@ -31,6 +31,13 @@ $cyan: #36b9cc !default;
 $brand-google: #ea4335 !default;
 $brand-facebook: #3b5998 !default;
 
+// Contrast Threshold
+// BS5 replaced BS4's $yiq-contrasted-threshold with color-contrast()/$min-contrast-ratio.
+// Lowered from the BS5 default (4.5) so brand-colored buttons/badges keep white text like BS4.
+$min-contrast-ratio: 1.4 !default;
+// BS4 used $gray-900 (#3a3b45) for dark contrast text; BS5 defaults to $black. Restore the BS4 tone.
+$color-contrast-dark: $gray-900 !default;
+
 // Typography
 $body-color: $gray-600 !default;
 
@@ -39,6 +46,9 @@ $font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI"
 $font-weight-light: 300 !default;
 // $font-weight-base: 400;
 $headings-font-weight: 400 !default;
+
+// BS5 changed $small-font-size from 80% to .875em; keep the BS4 value.
+$small-font-size: 80% !default;
 
 // Shadows
 $box-shadow-sm: 0 0.125rem 0.25rem 0 rgba($gray-900, .2) !default;
@@ -76,3 +86,37 @@ $dropdown-border-color: $border-color !default;
 $login-image: 'https://source.unsplash.com/K4mSJ7kc0As/600x800' !default;
 $register-image: 'https://source.unsplash.com/Mv9hjnEUHR4/600x800' !default;
 $password-image: 'https://source.unsplash.com/oWTW-jNGl9I/600x800' !default;
+
+// Bootstrap 5 parity overrides
+// BS5 changed several defaults that drift from the BS4 sb-admin-2 look.
+// These restore the original appearance (verified via a BS4-vs-BS5 style sweep).
+
+// Links: BS5 underlines links by default; BS4 did not.
+$link-decoration: none !default;
+
+// Dark theme color: BS4 used gray-800, BS5 uses gray-900.
+$dark: $gray-800 !default;
+
+// Component radii: BS5 bumped the small/large radius defaults.
+$border-radius-sm: 0.2rem !default;
+$border-radius-lg: 0.3rem !default;
+
+// Cards: BS5 tightened the padding.
+$card-spacer-y: 1.25rem !default;
+$card-spacer-x: 1.25rem !default;
+$card-cap-padding-y: 0.75rem !default;
+$card-cap-padding-x: 1.25rem !default;
+
+// Dropdowns: BS5 lightened item text and reduced horizontal padding.
+$dropdown-link-color: $gray-900 !default;
+$dropdown-item-padding-x: 1.5rem !default;
+
+// Form controls: BS5 lightened input text and border.
+$input-color: $gray-700 !default;
+$input-border-color: $gray-400 !default;
+
+// Tables: BS5 defaults cell text to the near-black emphasis color; BS4 used body color.
+$table-color: $body-color !default;
+// Tables: BS5 tightened cell padding from .75rem to .5rem.
+$table-cell-padding-y: 0.75rem !default;
+$table-cell-padding-x: 0.75rem !default;

@@ -1,3 +1,9 @@
+// BS5 removed .btn-block and its stacking rule. Restore the spacing between
+// consecutive full-width buttons (.w-100 replaced .btn-block in the markup).
+.btn.w-100 + .btn.w-100 {
+  margin-top: 0.5rem;
+}
+
 .btn-circle {
   border-radius: 100%;
   height: 2.5rem;
