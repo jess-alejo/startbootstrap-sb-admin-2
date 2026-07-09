@@ -58,11 +58,8 @@ function modules() {
   // ChartJS (v4 UMD build)
   var chartJS = gulp.src('./node_modules/chart.js/dist/chart.umd*.js')
     .pipe(gulp.dest('./vendor/chart.js'));
-  // simple-datatables (vanilla replacement for DataTables)
-  var simpleDatatables = gulp.src([
-      './node_modules/simple-datatables/dist/umd/simple-datatables.js',
-      './node_modules/simple-datatables/dist/style.css'
-    ])
+  // simple-datatables (vanilla replacement for DataTables; styled via the theme SCSS)
+  var simpleDatatables = gulp.src('./node_modules/simple-datatables/dist/umd/simple-datatables.js')
     .pipe(gulp.dest('./vendor/simple-datatables'));
   // Font Awesome
   var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')

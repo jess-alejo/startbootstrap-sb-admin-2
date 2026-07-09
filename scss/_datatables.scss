@@ -1,0 +1,157 @@
+// simple-datatables theming
+// The library ships an unstyled stylesheet that overrides Bootstrap; we drop it
+// and style the generated markup here instead, so the table stays a native
+// Bootstrap .table and the controls, pagination, and sort icons match the theme.
+
+.datatable-wrapper {
+
+  // Control bars (length selector + search on top, info + pagination on bottom)
+  .datatable-top,
+  .datatable-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0.75rem 0;
+  }
+
+  // "Entries per page" selector and "Search" input -> Bootstrap form controls
+  .datatable-selector,
+  .datatable-input {
+    display: inline-block;
+    width: auto;
+    padding: 0.25rem 0.5rem;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+    color: $input-color;
+    background-color: $white;
+    border: $border-width solid $input-border-color;
+    border-radius: $border-radius-sm;
+
+    &:focus {
+      border-color: $primary;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+    }
+  }
+
+  .datatable-selector {
+    margin: 0 0.35rem;
+  }
+
+  .datatable-dropdown label,
+  .datatable-info {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $gray-600;
+  }
+
+  // Sort icons on the header cells
+  .datatable-table th > button {
+    width: 100%;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .datatable-sorter {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      right: 4px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      opacity: 0.3;
+    }
+    &::before {
+      border-top: 4px solid $gray-600;
+      bottom: 0;
+    }
+    &::after {
+      border-bottom: 4px solid $gray-600;
+      top: 0;
+    }
+  }
+
+  .datatable-ascending .datatable-sorter::after,
+  .datatable-descending .datatable-sorter::before {
+    opacity: 0.9;
+  }
+
+  // Pagination -> Bootstrap .pagination look
+  .datatable-pagination {
+    .datatable-pagination-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li > a,
+    li > button {
+      position: relative;
+      display: block;
+      margin-left: -$border-width;
+      padding: 0.375rem 0.75rem;
+      font-size: $font-size-sm;
+      color: $primary;
+      background-color: $white;
+      border: $border-width solid $gray-300;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $gray-200;
+        border-color: $gray-300;
+      }
+    }
+
+    li:first-child > a,
+    li:first-child > button {
+      margin-left: 0;
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+
+    li:last-child > a,
+    li:last-child > button {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    .datatable-active > a,
+    .datatable-active > button {
+      z-index: 1;
+      color: $white;
+      background-color: $primary;
+      border-color: $primary;
+    }
+
+    .datatable-hidden {
+      display: none;
+    }
+
+    .datatable-disabled > a,
+    .datatable-disabled > button {
+      color: $gray-500;
+      pointer-events: none;
+    }
+  }
+
+  .datatable-empty {
+    text-align: center;
+  }
+}
